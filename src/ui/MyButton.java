@@ -32,9 +32,9 @@ public class MyButton {
     }
 
     public void drawText(Graphics g){
-
-
-        g.drawString(text,x + width /2,y+height/2);
+        int w = g.getFontMetrics().stringWidth(text);
+        int h = g.getFontMetrics().getHeight();
+        g.drawString(text,x - w / 2 + width / 2,y + h / 2 + height / 2);
     }
 
     public Rectangle getBounds(){
