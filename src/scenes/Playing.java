@@ -5,15 +5,16 @@ import java.awt.Graphics;
 import helpz.LevelBuild;
 import main.Game;
 import managers.TileManager;
+import ui.BottomBar;
 import ui.MyButton;
 
 import static main.GameStates.*;
-
 public class Playing extends GameScene implements SceneMethods {
 
 	private int[][] lvl;
 	private TileManager tileManager;
 	private MyButton bMenu;
+	private BottomBar bottomBar;
 
 	public Playing(Game game) {
 		super(game);
@@ -21,7 +22,7 @@ public class Playing extends GameScene implements SceneMethods {
 		initButtons();
 		lvl = LevelBuild.getLevelData();
 		tileManager = new TileManager();
-
+		bottomBar = new BottomBar(0,640,640,100);
 	}
 
 	private void initButtons() {
@@ -38,9 +39,8 @@ public class Playing extends GameScene implements SceneMethods {
 				g.drawImage(tileManager.getSprite(id), x * 32, y * 32, null);
 			}
 		}
-
 		drawButtons(g);
-
+		bottomBar.draw(g);
 	}
 
 	private void drawButtons(Graphics g) {
@@ -52,7 +52,6 @@ public class Playing extends GameScene implements SceneMethods {
 	public void mouseClicked(int x, int y) {
 		if (bMenu.getBounds().contains(x, y))
 			SetGameState(MENU);
-
 	}
 
 	@Override
